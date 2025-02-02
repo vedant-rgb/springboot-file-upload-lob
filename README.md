@@ -29,3 +29,36 @@ public class Document {
     private byte[] fileData;       
 }
 ```
+
+2 .Create a controller to uplaod and view files.
+
+We need to set headers for the same, specifically:
+
+- **Content-Type** (the MIME type)
+- **Content-Disposition**:
+  - `ContentDisposition.inline().build()` → View document in the browser
+  - `ContentDisposition.attachment().build()` → Download document as an attachment
+
+
+```java
+HttpHeaders httpHeaders = new HttpHeaders();
+httpHeaders.setContentType(MediaType.parseMediaType(document.getFileType()));
+httpHeaders.setContentDisposition(ContentDisposition.inline().build());
+```
+OR
+```java
+HttpHeaders httpHeaders = new HttpHeaders();
+httpHeaders.setContentType(MediaType.parseMediaType(document.getFileType()));
+httpHeaders.setContentDisposition(ContentDisposition.attachment().build());
+```
+
+
+
+
+
+
+
+
+
+
+            
